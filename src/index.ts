@@ -11,12 +11,11 @@ import * as http from 'http';
 
 createConnection(config.database).then(async connection => {
 
-
     var server = http.createServer(app);
-    
+
 
     server.listen(config.port, config.ip, () => {
-        console.log('Express server listening on %d, in %s mode', config.port, app.get('env'));
+        console.log('a Express server listening on %d, in %s mode', config.port, app.get('env'));
     });
     
     // // start express server

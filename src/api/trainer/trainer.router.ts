@@ -25,12 +25,16 @@ import { TrainerController } from './trainer.controller';
 // }];
 
 var router = Router();
-// // var trainer = new TrainerController();
+const trainer = new TrainerController();
+console.log('trainer.trainerRepository after', trainer.trainerRepository);
+trainer.initRepository();
+console.log('trainer.trainerRepository before', trainer.trainerRepository);
 // const trainerController = new TrainerController();
 // console.log(trainerController);
 // console.log('trainerRepository', trainerController.trainerRepository)
 // router.get('/', auth.hasRole('admin'), TrainerController.prototype.all);
-router.post('/', TrainerController.prototype.save);
+// trainer.save(null, null, null);
+router.post('/', trainer.save);
 
 export = router;
 
