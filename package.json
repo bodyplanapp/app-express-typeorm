@@ -38,8 +38,10 @@
     },
     "scripts": {
         "start": "ts-node src/index.ts",
-        "dev": "set NODE_ENV=development&& ts-node src/index.ts",
-        "prod": "set NODE_ENV=production&& ts-node src/index.ts",
+        "dev": "set NODE_ENV=development&& ts-node ./node_modules/nodemon/bin/nodemon.js",
+        "prod": "set NODE_ENV=production&& ts-node ./node_modules/nodemon/bin/nodemon.js",
+        "typeorm:dev": "typeorm --config ./development.json",
+        "schema:sync:dev": "ts-node ./node_modules/typeorm/cli.js --config ./development.json schema:sync",
         "schema:sync": "ts-node ./node_modules/typeorm/cli.js schema:sync",
         "migrations:run": "ts-node ./node_modules/typeorm/cli.js migrations:run"
     }

@@ -1,9 +1,9 @@
 'use strict';
 import { config } from '../config/environment';
-import jwt from 'jsonwebtoken';
+import * as jwt from 'jsonwebtoken';
 import * as expressJwt from 'express-jwt';
 import * as compose from 'composable-middleware';
-
+import { NextFunction, Request, Response } from "express";
 
 var validateJwt = expressJwt({
     secret: config.secrets.session
@@ -16,50 +16,29 @@ var validateJwt = expressJwt({
 export function isAuthenticated() {
     return compose()
         // Validate jwt
-        .use(function (req, res, next) {
-            console.log('REQ 1', req.params.id)
+        .use((request: Request, response: Response, next: NextFunction) => {
+            console.log('Validation 1')
             // allow access_token to be passed through query parameter as well
-            // if (req.query && req.query.hasOwnProperty('access_token')) {
-            //     req.headers.authorization = `Bearer ${req.query.access_token}`;
+            // if (request.query && request.query.hasOwnProperty('access_token')) {
+            //     request.headers.authorization = `Bearer ${request.query.access_token}`;
             // }
-            // // IE11 forgets to set Authorization header sometimes. Pull from cookie instead.
-            // if (req.query && typeof req.headers.authorization === 'undefined') {
-            //     req.headers.authorization = `Bearer ${req.cookies.token}`;
+            // IE11 forgets to set Authorization header sometimes. Pull from cookie instead.
+            // if (request.query && typeof request.headers.authorization === 'undefined') {
+            //     request.headers.authorization = `Bearer ${request.cookies.token}`;
             // }
-
-            validateJwt(req, res, next);
+            validateJwt(request, response, next);
         })
         // Attach user to request
-        .use(function (error, req, res, next) {
-            console.log('REQ 2')
+        .use((error, request, response, next) => {
+            console.log('Validation 2')
             if (error) {
-                return res.status(505).json({
+                return response.status(505).json({
                     status: 'error',
                     message: 'Not Authenticated',
                     error: error
                 }).end();
             }
-
-            // User.find({
-            //     where: {
-            //         _id: req.params._id
-            //     }
-            // })
-                // .then(user => {
-                //     console.log('REQ 3')
-                //     if (!user) {
-                //         return res.status(401).end();
-                //     }
-                //     req.user = user;
-                //     next();
-                //     return null;
-                // })
-                // .catch(err => {
-                //  console.log('5');
-                //     next(err)
-                // }
-
-                // );
+            next();
         });
 }
 
@@ -85,10 +64,11 @@ export function hasRole(roleRequired) {
 /**
  * Returns a jwt token signed by the app secret
  */
-export function signToken(id, role) {
-    return jwt.sign({ _id: id, role }, config.secrets.session, {
-        expiresIn: 60 * 60 * 5
-    });
+export function signToken(id, role?) {
+    // return jwt.sign({ _id: id, role }, config.secrets.session, {
+    //     expiresIn: 60 * 60 * 5
+    // });
+    return jwt.sign({ _id: id }, config.secrets.session);
 }
 
 /**

@@ -5,19 +5,19 @@ import { User } from "../user/user.model";
 @DiscriminatorValue('trainer')
 export class Trainer extends User {
 
-    @Column("decimal")
+    @Column("decimal", { default: 0 })
     rating: number;
 
-    @Column()
+    @Column({ default: 0 })
     planCount: number;
 
-    @Column()
+    @Column({ default: 0 })
     planDelete: number;
 
-    @Column()
+    @Column({ default: 0 })
     planActive: number;
 
-    @Column("decimal")
+    @Column("decimal", { default: 0 })
     wallet: number;
 
 }

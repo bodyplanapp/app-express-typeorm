@@ -40,19 +40,19 @@ export class User {
     @CreateDateColumn({ type: "timestamp" })
     updatedAt: Date
 
-    @Column('varchar')
+    @Column('varchar', { default: "other" })
     gender: Gender
 
-    @Column()
+    @Column({ default: false })
     activated: boolean;
 
     @Column()
     username: string;
 
-    @Column()
+    @Column({ default: 0 })
     followers: number;
 
-    @Column()
+    @Column({ default: 0 })
     followedBy: number;
 
     @Column()
