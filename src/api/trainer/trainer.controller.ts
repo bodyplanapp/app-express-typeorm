@@ -14,8 +14,8 @@ export class TrainerController {
             .then(trainer => {
                 const token = auth.signToken(trainer.id);
                 response.status(200).json({ message: 'Trainer created', token });
-            }).catch(err => {
-                response.status(500).json({ message: 'Server error' });
+            }).catch(error => {
+                response.status(500).json({ message: 'Server error', error });
             });
     }
 
@@ -25,8 +25,8 @@ export class TrainerController {
         trainerRepository.find()
             .then(trainer => {
                 response.status(200).json({ message: 'All trainers', trainer });
-            }).catch(err => {
-                response.status(500).json({ message: 'Server error' });
+            }).catch(error => {
+                response.status(500).json({ message: 'Server error', error });
             });
     }
 
@@ -41,8 +41,8 @@ export class TrainerController {
                     response.status(401).json({ message: 'Invalid trainer' });
                 }
 
-            }).catch(err => {
-                response.status(500).json({ message: 'Server error' });
+            }).catch(error => {
+                response.status(500).json({ message: 'Server error', error });
             });
     }
 

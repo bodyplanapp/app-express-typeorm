@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, TableInheritance, DiscriminatorColumn, CreateDateColumn, OneToOne, JoinColumn } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, TableInheritance, DiscriminatorColumn, CreateDateColumn, OneToOne, JoinColumn, OneToMany } from "typeorm";
 import { File } from "../file/file.model";
+import { Plan } from "../plan/plan.model";
 
 enum Gender {
     Male = 'male',
@@ -61,12 +62,15 @@ export class User {
     @Column()
     lang: string;
 
-    @Column()
+    @Column({ nullable: true })
     facebook: number;
 
-    @Column()
+    @Column({ nullable: true })
     google: number;
 
-    @Column()
+    @Column({ nullable: true })
     instagram: number;
+
+    @OneToMany(type => Plan, plan => plan.user)
+    plans: Plan[];
 }

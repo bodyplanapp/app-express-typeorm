@@ -5,7 +5,7 @@ import { FileController } from './file.controller';
 const router = Router();
 const file = new FileController();
 
-// router.post('/', file.save);
+router.post('/', auth.isAuthenticated(), file.save);
 // router.get('/all', auth.isAuthenticated(), file.all);
 // router.get('/:id', auth.isAuthenticated(), file.one);
 

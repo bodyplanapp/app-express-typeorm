@@ -1,4 +1,4 @@
-import { getRepository, getConnection } from "typeorm";
+import { getRepository, getConnection, DeepPartial } from "typeorm";
 import { NextFunction, Request, Response } from "express";
 import { User } from "./user.model";
 
@@ -28,14 +28,7 @@ export class UserController {
     async update(request: Request, response: Response, next: NextFunction) {
         console.log('UserController --> update', request.params.id, request.body);
         const userRepository = getConnection().getRepository(User);
-
-        // Todo
-        const object = {};
-        _.keys(request.body).forEach(key => {
-            object[key] = request.body[key]
-        });
-
-        userRepository.updateById(request.params.id, object)
+        userRepository.update(request.params.id, _.cloneDeep(request.body))
             .then(user => {
                 response.status(200).json({ message: 'Update user' });
             }).catch(error => {
