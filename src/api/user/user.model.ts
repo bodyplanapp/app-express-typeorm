@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, TableInheritance, DiscriminatorColumn, CreateDateColumn, OneToOne, JoinColumn, OneToMany } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, TableInheritance, CreateDateColumn, OneToOne, JoinColumn, OneToMany } from "typeorm";
 import { File } from "../file/file.model";
 import { Plan } from "../plan/plan.model";
 
@@ -9,8 +9,7 @@ enum Gender {
 }
 
 @Entity()
-@TableInheritance("class-table")
-@DiscriminatorColumn({ name: "role", type: "varchar" })
+@TableInheritance({ column: { name: 'role', type: 'varchar' } })
 export class User {
 
     @PrimaryGeneratedColumn()
@@ -22,10 +21,10 @@ export class User {
     @Column()
     lastName: string;
 
-    @Column()
+    @Column({ nullable: true })
     description: string;
 
-    @OneToOne(type => File)
+    @OneToOne(type => File, { cascade: true })
     @JoinColumn()
     file: File;
 
@@ -56,7 +55,7 @@ export class User {
     @Column({ default: 0 })
     followedBy: number;
 
-    @Column()
+    @Column({ nullable: true })
     birthday: Date;
 
     @Column()
@@ -71,6 +70,4 @@ export class User {
     @Column({ nullable: true })
     instagram: number;
 
-    @OneToMany(type => Plan, plan => plan.user)
-    plans: Plan[];
 }

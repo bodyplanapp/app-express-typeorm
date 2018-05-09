@@ -8,6 +8,7 @@ import { UserController } from './user.controller';
 const user = new UserController();
 const router = Router();
 
+router.post('/', user.save);
 router.post('/signIn', user.signIn);
 router.put('/update/:id', user.update);
 // router.put('/:id', auth.isAuthenticated(), user.changePassword);

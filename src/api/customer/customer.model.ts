@@ -1,8 +1,7 @@
-import { Entity, Column, DiscriminatorValue, ClassEntityChild } from "typeorm";
+import { Entity, Column, ChildEntity, } from "typeorm";
 import { User } from "../user/user.model";
 
-@ClassEntityChild()
-@DiscriminatorValue('customer')
+@ChildEntity('customer')
 export class Customer extends User {
 
     @Column("decimal")

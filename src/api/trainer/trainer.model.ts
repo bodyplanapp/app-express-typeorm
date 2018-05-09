@@ -1,9 +1,9 @@
-import { Entity, Column, DiscriminatorValue, ClassEntityChild, OneToMany } from "typeorm";
+import { Entity, Column, OneToMany, ChildEntity, ManyToOne } from "typeorm";
 import { User } from "../user/user.model";
 import { Plan } from "../plan/plan.model";
 
-@ClassEntityChild()
-@DiscriminatorValue('trainer')
+// @ClassEntityChild()
+@ChildEntity('trainer')
 export class Trainer extends User {
 
     @Column("decimal", { default: 0 })
@@ -21,7 +21,7 @@ export class Trainer extends User {
     @Column("decimal", { default: 0 })
     wallet: number;
 
-    // @OneToMany(type => Plan, plan => plan.trainer)
-    // plans: Plan[];
+    @OneToMany(type => Plan, plan => plan.trainer)
+    plans: Plan[];
 
 }

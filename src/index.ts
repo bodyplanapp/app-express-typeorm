@@ -17,6 +17,10 @@ createConnection(config.database).then(async connection => {
     server.listen(config.port, config.ip, () => {
         console.log('a Express server listening on %d, in %s mode', config.port, app.get('env'));
     });
+
+    // process.on('unhandledRejection', (reason, p) => {
+    //     console.log('Unhandled Rejection at: Promise', p, 'reason:', reason);
+    //   });
     
     // // start express server
     // server.listen(config.port, config.ip);

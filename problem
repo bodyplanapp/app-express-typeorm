@@ -1,0 +1,67 @@
+@Entity()
+@TableInheritance({ column: { name: 'role', type: 'varchar' } })
+export abstract class User {
+    
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @Column()
+    firstName: string;
+
+    @OneToOne(type => File, file => file.user)
+    @JoinColumn()
+    file: File;
+    
+}
+
+@ChildEntity('trainer')
+export class Trainer extends User {
+
+    @Column("decimal", { default: 0 })
+    rating: number;
+
+}
+
+@Entity()
+export class File {
+
+    @PrimaryGeneratedColumn()
+    id: number;
+
+    @Column()
+    url: string;
+
+    @OneToOne(type => User, user => user.file)
+    user: User;
+}
+
+export class TrainerController {
+
+    async save(request: Request, response: Response, next: NextFunction) {
+        const file = new File();
+        file.url = 'nada';
+
+        const trainer = new Trainer();
+        trainer.firstName = 'firstName';
+        trainer.file = file;
+
+        const trainerRepository = getConnection().getRepository(Trainer);
+        trainerRepository.save(trainer)
+            .then(trainer => {
+                const token = auth.signToken(trainer.id);
+                response.status(200).json({ message: 'Trainer created', token });
+            }).catch(error => {
+                response.status(500).json({ message: 'Server error', error });
+            });
+    }
+
+Database Postgres
+
+Table User
+id -> 1
+firstName -> 'firstName'
+fileId -> empty (I want to set id of file, in this example it be 1)
+
+Table File
+id -> 1
+url -> 'nada'

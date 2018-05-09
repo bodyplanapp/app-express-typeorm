@@ -1,28 +1,42 @@
-import { getRepository, getConnection } from "typeorm";
+import { getRepository, getConnection, getManager } from "typeorm";
 import { NextFunction, Request, Response } from "express";
 import { Trainer } from "./trainer.model";
 import * as auth from '../../auth/auth.service';
+import { File } from "../file/file.model";
+import { TrainerService } from "./trainer.service";
+import { TrainerRepository } from "./trainer.repository";
+import { UserRepository } from "../user/user.repository";
 
 export class TrainerController {
 
-    // trainerRepository: getRepository(Trainer);
+    // private trainerRepository = getManager().getRepository(Trainer);
 
     async save(request: Request, response: Response, next: NextFunction) {
         console.log('TrainerController --> save');
-        const trainerRepository = getConnection().getRepository(Trainer);
-        trainerRepository.save(request.body)
-            .then(trainer => {
-                const token = auth.signToken(trainer.id);
-                response.status(200).json({ message: 'Trainer created', token });
-            }).catch(error => {
-                response.status(500).json({ message: 'Server error', error });
-            });
+        const userRepository = new UserRepository();
+
+        if (await userRepository.findOneByEmail(request.body.email)) {
+            response.status(401).json({ message: 'Email already in use' });
+        } else if (await userRepository.findOneByUsername(request.body.username)) {
+            response.status(401).json({ message: 'Username already in use' });
+        } else {
+            const trainerRepository = new TrainerRepository();
+            const trainerService = new TrainerService();
+            const trainer = trainerService.createTrainer(request.body);
+            trainerRepository.save(trainer)
+                .then(trainer => {
+                    const token = auth.signToken(trainer.id);
+                    response.status(200).json({ message: 'Trainer created', token });
+                }).catch(error => {
+                    response.status(500).json({ message: 'Server error', error });
+                });
+        }
     }
 
     async all(request: Request, response: Response, next: NextFunction) {
         console.log('TrainerController --> all');
-        const trainerRepository = getConnection().getRepository(Trainer);
-        trainerRepository.find()
+        const trainerService = new TrainerService();
+        trainerService.findAll()
             .then(trainer => {
                 response.status(200).json({ message: 'All trainers', trainer });
             }).catch(error => {
@@ -32,8 +46,8 @@ export class TrainerController {
 
     async one(request: Request, response: Response, next: NextFunction) {
         console.log('TrainerController --> one');
-        const trainerRepository = getConnection().getRepository(Trainer);
-        trainerRepository.findOneById(request.params.id)
+        const trainerService = new TrainerService();
+        trainerService.findOne(request.params.id)
             .then(trainer => {
                 if (trainer) {
                     response.status(200).json({ message: 'Trainer', trainer });

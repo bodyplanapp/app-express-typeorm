@@ -21,26 +21,23 @@ export class Plan {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
+    @Column({ nullable: true })
     name: string;
 
-    @Column()
+    @Column({ nullable: true })
     description: string;
 
-    @Column("decimal")
+    @Column("decimal", { nullable: true })
     price: number;
 
     @CreateDateColumn({ type: "timestamp" })
     creatdAt: Date;
 
-    @Column()
+    @Column({ nullable: true })
     lang: string;
 
-    // @ManyToOne(type => Trainer, trainer => trainer.plans)
-    // trainer: Trainer;
-
-    @ManyToOne(type => User, user => user.plans)
-    user: User;
+    @ManyToOne(type => Trainer, trainer => trainer.plans, { cascade: true })
+    trainer: Trainer;
 
     @Column({ default: 0 })
     followers: number;
