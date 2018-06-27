@@ -3,7 +3,7 @@
  */
 import * as express from 'express';
 import expressConfig from './config/express';
-import registerRoutes from './routes';
+import setupGraphQL from './config/graphql';
 
 // import config from './config/environment';
 // import initWebSocketServer from './config/websockets';
@@ -15,7 +15,8 @@ var app = express();
 // var server = http.createServer(app);
 // const wsInitPromise = initWebSocketServer(server);
 expressConfig(app);
-registerRoutes(app);
+setupGraphQL(app)
+// registerRoutes(app);
 
 // Expose app
 export = app;

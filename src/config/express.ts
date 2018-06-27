@@ -43,7 +43,7 @@ export default function(app) {
     app.use(bodyParser.json());
     // app.use(methodOverride());
     app.use(cookieParser());
-    app.use(passport.initialize());
+    // app.use(passport.initialize());
 
 
 
