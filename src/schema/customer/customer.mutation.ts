@@ -1,5 +1,5 @@
 import { getRepository } from "typeorm";
-import { Customer } from "../../api/customer/customer.model";
+import { Customer } from "../../models/customer.model";
 import { randomBytes } from "crypto";
 
 export const createCardMutation = {

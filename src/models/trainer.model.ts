@@ -1,6 +1,6 @@
 import { Entity, Column, OneToMany, ChildEntity, ManyToOne } from "typeorm";
-import { User } from "../user/user.model";
-import { Plan } from "../plan/plan.model";
+import { User } from "./user.model";
+import { Plan } from "./plan.model";
 
 // @ClassEntityChild()
 @ChildEntity('trainer')

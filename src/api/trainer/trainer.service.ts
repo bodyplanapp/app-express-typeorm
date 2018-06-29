@@ -1,6 +1,6 @@
 import { getConnection, Repository, EntityManager, Transaction, TransactionManager, TransactionRepository, getManager } from "typeorm";
-import { Trainer } from "./trainer.model";
-import { File } from "../file/file.model";
+import { Trainer } from "../../models/trainer.model";
+import { File } from "../../models/file.model";
 import { TrainerRepository } from "./trainer.repository";
 
 export class TrainerService {

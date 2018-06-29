@@ -1,4 +1,4 @@
-import { Trainer } from "./trainer.model";
+import { Trainer } from "../../models/trainer.model";
 import { getManager, Transaction, TransactionRepository, Repository } from "typeorm";
 
 export class TrainerRepository {

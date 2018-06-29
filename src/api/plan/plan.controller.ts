@@ -1,10 +1,10 @@
 import { getRepository, getConnection } from "typeorm";
 import { NextFunction, Request, Response } from "express";
-import { Plan } from "./plan.model";
+import { Plan } from "../../models/plan.model";
 
 import * as auth from '../../auth/auth.service';
-import { User } from "../user/user.model";
-import { Trainer } from "../trainer/trainer.model";
+import { User } from "../../models/user.model";
+import { Trainer } from "../../models/trainer.model";
 import { TrainerService } from "../trainer/trainer.service";
 import { PlanService } from "./plan.service";
 import { PlanRepository } from "./plan.repository";

@@ -1,5 +1,5 @@
 import { getRepository } from "typeorm";
-import { User } from "../../../api/user/user.model";
+import { User } from "../../../models/user.model";
 
 export const Query = {
     async getUsers() {

@@ -1,6 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, ManyToOne, JoinColumn } from "typeorm";
-import { User } from "../user/user.model";
-import { Trainer } from "../trainer/trainer.model";
+import { User } from "./user.model";
+import { Trainer } from "./trainer.model";
 
 enum Type {
     Exercise = 'exercise',

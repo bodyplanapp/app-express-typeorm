@@ -1,5 +1,5 @@
 import { getRepository } from "typeorm";
-import { Trainer } from "../../../api/trainer/trainer.model";
+import { Trainer } from "../../../models/trainer.model";
 
 export const Query = {
     async getTrainers() {

@@ -1,10 +1,10 @@
 import { getRepository, getConnection, DeepPartial } from "typeorm";
 import { NextFunction, Request, Response } from "express";
-import { User } from "./user.model";
+import { User } from "../../models/user.model";
 
 import * as auth from '../../auth/auth.service';
 import * as _ from 'lodash';
-import { File } from "../file/file.model";
+import { File } from "../../models/file.model";
 
 export class UserController {
 

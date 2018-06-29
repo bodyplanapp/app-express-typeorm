@@ -1,6 +1,6 @@
 import { getRepository, getConnection } from "typeorm";
 import { NextFunction, Request, Response } from "express";
-import { File } from "./file.model";
+import { File } from "../../models/file.model";
 
 import * as auth from '../../auth/auth.service';
 

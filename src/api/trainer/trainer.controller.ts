@@ -1,8 +1,8 @@
 import { getRepository, getConnection, getManager } from "typeorm";
 import { NextFunction, Request, Response } from "express";
-import { Trainer } from "./trainer.model";
+import { Trainer } from "../../models/trainer.model";
 import * as auth from '../../auth/auth.service';
-import { File } from "../file/file.model";
+import { File } from "../../models/file.model";
 import { TrainerService } from "./trainer.service";
 import { TrainerRepository } from "./trainer.repository";
 import { UserRepository } from "../user/user.repository";

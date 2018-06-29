@@ -1,7 +1,7 @@
 import { PlanRepository } from "./plan.repository";
-import { Trainer } from "../trainer/trainer.model";
+import { Trainer } from "../../models/trainer.model";
 import { TrainerService } from "../trainer/trainer.service";
-import { Plan } from "./plan.model";
+import { Plan } from "../../models/plan.model";
 import { TrainerRepository } from "../trainer/trainer.repository";
 
 export class PlanService {

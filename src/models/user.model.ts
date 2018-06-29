@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, TableInheritance, CreateDateColumn, OneToOne, JoinColumn, OneToMany } from "typeorm";
-import { File } from "../file/file.model";
-import { Plan } from "../plan/plan.model";
+import { File } from "./file.model";
+import { Plan } from "./plan.model";
 
 enum Gender {
     Male = 'male',

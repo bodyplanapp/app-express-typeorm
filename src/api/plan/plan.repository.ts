@@ -1,5 +1,5 @@
 import { getManager, Transaction } from "typeorm";
-import { Plan } from "./plan.model";
+import { Plan } from "../../models/plan.model";
 
 export class PlanRepository {
 
