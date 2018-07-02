@@ -1,7 +1,7 @@
 // Imports
 import { graphqlExpress, graphiqlExpress } from 'apollo-server-express'
 import * as bodyParser from 'body-parser'
-
+import * as auth from '../auth/auth.service';
 // App Imports
 // import { config } from './environment'
 import schema from '../schema'
@@ -11,7 +11,10 @@ export default function (server) {
   console.info('SETUP - GraphQL...')
 
   // The GraphQL endpoint
-  server.use('/graphql', bodyParser.json(), graphqlExpress({ schema }));
+  //auth.isAuthenticated(), 
+  server.use('/graphql', bodyParser.json(), graphqlExpress(req => ({
+    schema
+  })));
 
   // GraphiQL, a visual editor for queries
   server.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));

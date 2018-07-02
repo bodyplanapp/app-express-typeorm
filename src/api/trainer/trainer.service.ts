@@ -1,7 +1,7 @@
-import { getConnection, Repository, EntityManager, Transaction, TransactionManager, TransactionRepository, getManager } from "typeorm";
+
 import { Trainer } from "../../models/trainer.model";
 import { File } from "../../models/file.model";
-import { TrainerRepository } from "./trainer.repository";
+import { TrainerRepository } from "../../schema/trainer/services/repository/trainer.repository";
 
 export class TrainerService {
 
@@ -19,14 +19,6 @@ export class TrainerService {
         file.url = "none";
         trainer.file = file;
         return trainer;
-    }
-
-    findOne(id: number) {
-        return this.trainerRepository.findOne(id);
-    }
-
-    findAll() {
-        return this.trainerRepository.findAll();
     }
 
 }

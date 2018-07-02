@@ -1,5 +1,5 @@
 export default `
-    input NewTrainer {
+    input EditUser {
         firstName:      String
         lastName:       String
         email:          String

@@ -1,6 +1,6 @@
 export default
     `
     type Mutation {
-        createTrainer(trainer: NewTrainer!): Trainer!
+        createTrainer(trainer: NewTrainer!): String!
       }
 `;

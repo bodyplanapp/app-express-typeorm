@@ -5,7 +5,7 @@ export default `
     OTHER
   }
   type User { 
-    id:             Int
+    id:             ID
     firstName:      String
     lastName:       String
     description:    String

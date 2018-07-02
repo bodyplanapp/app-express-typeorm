@@ -1,5 +1,6 @@
-import { User } from "../../models/user.model";
+
 import { getManager } from "typeorm";
+import { User } from "../../../../models/user.model";
 
 export class UserRepository {
 
@@ -11,7 +12,7 @@ export class UserRepository {
         return await this.getRepository().findOne({ email: email });
     }
 
-    findOneByUsername(username) {
+    async findOneByUsername(username) {
         return this.getRepository().findOne({ username: username });
     }
 }

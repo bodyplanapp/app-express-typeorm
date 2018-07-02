@@ -4,8 +4,8 @@ import { Trainer } from "../../models/trainer.model";
 import * as auth from '../../auth/auth.service';
 import { File } from "../../models/file.model";
 import { TrainerService } from "./trainer.service";
-import { TrainerRepository } from "./trainer.repository";
-import { UserRepository } from "../user/user.repository";
+import { TrainerRepository } from "../../schema/trainer/services/repository/trainer.repository";
+import { UserRepository } from "../../schema/user/services/repository/user.repository";
 
 export class TrainerController {
 
