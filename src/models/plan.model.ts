@@ -1,6 +1,8 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, ManyToOne, JoinColumn } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, ManyToOne, JoinColumn, OneToMany } from "typeorm";
 import { User } from "./user.model";
 import { Trainer } from "./trainer.model";
+import { Week } from "./week.model";
+import { Workout } from "./workout.model";
 
 enum Type {
     Exercise = 'exercise',
@@ -50,5 +52,8 @@ export class Plan {
 
     @Column('varchar', { default: "available" })
     status: Status
+
+    @OneToMany(type => Workout, workout => workout.plan)
+    workouts: Workout[];
 
 }

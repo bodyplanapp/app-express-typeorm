@@ -1,0 +1,88 @@
+{
+    "trainer": 1,
+    "name": "Plan A",
+    "description": "Ganar masa muscular",
+    "workouts": [
+        {
+            "order": 1,
+            "name": "Monday",
+            "exercises": [
+                {
+                    "order": 1,
+                    "name": "Biceps",
+                    "set": 1,
+                    "rep": 15,
+                    "file": {
+                        "url": "http://...."
+                    }
+                },
+                {
+                    "order": 1,
+                    "name": "Biceps low",
+                    "set": 1,
+                    "rep": 15,
+                    "file": {
+                        "url": "http://...."
+                    }
+                }
+            ]
+        },
+        {
+            "order": 2,
+            "name": "Tuesday",
+            "exercise": [
+                {
+                    "order": 1,
+                    "name": "Tricpes",
+                    "file": {
+                        "url": "http://...."
+                    }
+                }
+            ]
+        }
+    ],
+    "weeks": [
+        {
+            "w1": [
+                {
+                    "order": 1,
+                    "name": "Monday",
+                    "exercise": [
+                        {
+                            "order": 1,
+                            "name": "Biceps",
+                            "set": 1,
+                            "rep": 15,
+                            "file": {
+                                "url": "http://...."
+                            }
+                        },
+                        {
+                            "order": 1,
+                            "name": "Biceps low",
+                            "set": 1,
+                            "rep": 15,
+                            "file": {
+                                "url": "http://...."
+                            }
+                        }
+                    ]
+                },
+                {
+                    "order": 2,
+                    "name": "Tuesday",
+                    "exercise": [
+                        {
+                            "order": 1,
+                            "name": "Tricpes",
+                            "file": {
+                                "url": "http://...."
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {}
+    ]
+}

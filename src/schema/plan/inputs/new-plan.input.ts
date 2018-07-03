@@ -4,5 +4,6 @@ export default `
         description:    String
         type:           Type
         trainer:        Int
+        workouts:       [NewWorkout]
     }
 `;
